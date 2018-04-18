@@ -1,6 +1,7 @@
 package biz.turnonline.ecosystem.origin.frontend;
 
 import biz.turnonline.ecosystem.origin.frontend.identity.AccountProfile;
+import biz.turnonline.ecosystem.origin.frontend.identity.Role;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -49,32 +50,10 @@ public class FrontendSession
 
         if ( isLoggedIn() )
         {
-            roles.add( getLoggedInUser().getRole() );
+            roles.add( Role.USER );
         }
 
         return roles;
-    }
-
-    public Long getItemsCount()
-    {
-        Long itemsCount = Long.class.cast( getAttribute( "itemsCount" ) );
-
-        if ( itemsCount == null )
-        {
-            return 0L;
-        }
-
-        return itemsCount;
-    }
-
-    public void setItemsCount( Long itemsCount )
-    {
-        setAttribute( "itemsCount", itemsCount );
-    }
-
-    public void resetItemsCount()
-    {
-        setAttribute( "itemsCount", null );
     }
 
     public boolean isLoggedIn()
